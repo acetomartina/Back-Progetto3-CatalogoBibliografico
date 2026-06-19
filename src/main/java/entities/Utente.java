@@ -1,8 +1,6 @@
 package entities;
 
-
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -19,20 +17,20 @@ public class Utente {
     @Column(nullable = false)
     private String cognome;
 
-    @Column(nullable = false, unique = true)
-    private String email;
+    @Column(name = "data_nascita", nullable = false)
+    private LocalDate dataNascita;
 
-    @Column(name = "data_registrazione",nullable = false)
-    private LocalDate dataRegistrazione;
+    @Column(name = "numero_tessera", nullable = false, unique = true)
+    private String numeroTessera;
 
     public Utente() {
     }
 
-    public Utente(String nome, String cognome, String email, LocalDate dataRegistrazione) {
+    public Utente(String nome, String cognome, LocalDate dataNascita, String numeroTessera) {
         this.nome = nome;
         this.cognome = cognome;
-        this.email = email;
-        this.dataRegistrazione = dataRegistrazione;
+        this.dataNascita = dataNascita;
+        this.numeroTessera = numeroTessera;
     }
 
     public Long getId() {
@@ -47,12 +45,12 @@ public class Utente {
         return cognome;
     }
 
-    public String getEmail() {
-        return email;
+    public LocalDate getDataNascita() {
+        return dataNascita;
     }
 
-    public LocalDate getDataRegistrazione() {
-        return dataRegistrazione;
+    public String getNumeroTessera() {
+        return numeroTessera;
     }
 
     public void setNome(String nome) {
@@ -63,12 +61,12 @@ public class Utente {
         this.cognome = cognome;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setDataNascita(LocalDate dataNascita) {
+        this.dataNascita = dataNascita;
     }
 
-    public void setDataRegistrazione(LocalDate dataRegistrazione) {
-        this.dataRegistrazione = dataRegistrazione;
+    public void setNumeroTessera(String numeroTessera) {
+        this.numeroTessera = numeroTessera;
     }
 
     @Override
@@ -77,8 +75,8 @@ public class Utente {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
-                ", email='" + email + '\'' +
-                ", dataRegistrazione=" + dataRegistrazione +
+                ", dataNascita=" + dataNascita +
+                ", numeroTessera='" + numeroTessera + '\'' +
                 '}';
     }
 }
