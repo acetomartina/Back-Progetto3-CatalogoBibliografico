@@ -12,7 +12,7 @@ public abstract class ElementoCatalogo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "codice_IBSN" ,nullable = false, unique = true)
     protected String codiceISBN;
 
     @Column(nullable = false)
