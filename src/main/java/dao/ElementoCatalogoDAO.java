@@ -1,11 +1,8 @@
 package dao;
 
 import entities.ElementoCatalogo;
-import entities.ListaDesideri;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.TypedQuery;
+import entities.Libro;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -39,7 +36,7 @@ public class ElementoCatalogoDAO {
         return query.getSingleResult();
     }
 
-    public List<ElementoCatalogo> findbyAnnoPubblicazione(int anno){
+    public List<ElementoCatalogo> findByAnnoPubblicazione(int anno){
         TypedQuery<ElementoCatalogo> query = em.createQuery(
                 "SELECT e FROM ElementoCatalogo e WHERE e.annoPubblicazione = :anno",
                 ElementoCatalogo.class
@@ -50,5 +47,40 @@ public class ElementoCatalogoDAO {
         return query.getResultList();
     }
 
-    
+    public List<ElementoCatalogo> findByTitolo(String titolo){
+        TypedQuery<ElementoCatalogo> query = em.createQuery(
+                "SELECT e FROM ElementoCatalogo e WHERE LOWER(e.titolo) LIKE LOWER(:titolo)",
+                ElementoCatalogo.class
+        );
+
+        query.setParameter("titolo", "%" + titolo + "%");
+
+        return query.getResultList();
+    }
+
+    public List<Libro> findByAutore(String autore) {
+
+        TypedQuery<Libro> query = em.createQuery(
+                "SELECT l FROM Libro l WHERE LOWER(l.autore) LIKE LOWER(:autore)",
+                Libro.class
+        );
+
+        query.setParameter("autore", "%" + autore + "%");
+
+        return query.getResultList();
+    }
+
+    public void deleteByISBN(String codiceISBN){
+        ElementoCatalogo elemento = findByISBN(codiceISBN);
+
+        EntityTransaction transaction = em.getTransaction();
+
+        transaction.begin();
+        em.remove(elemento);
+        transaction.commit();
+
+        System.out.println("Elemento rimosso correttamente!");
+    }
+
+
 }
