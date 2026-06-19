@@ -4,6 +4,7 @@ import entities.ElementoCatalogo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 
 public class ElementoCatalogoDAO {
 
@@ -24,7 +25,14 @@ public class ElementoCatalogoDAO {
         System.out.println("Elemento salvato correttamente!");
     }
 
-    public ElementoCatalogo findById(Long id) {
-        return em.find(ElementoCatalogo.class,id);
+    public ElementoCatalogo findByISBN(String codiceISBN) {
+        TypedQuery<ElementoCatalogo> query = em.createQuery(
+                "SELECT e FROM ElementoCatalogo e WHERE e.codiceISBN = :codiceISBN",
+                ElementoCatalogo.class
+        );
+
+        query.setParameter("codiceISBN", codiceISBN);
+
+        return query.getSingleResult();
     }
 }
