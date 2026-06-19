@@ -1,10 +1,13 @@
 package dao;
 
 import entities.ElementoCatalogo;
+import entities.ListaDesideri;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
+
+import java.util.List;
 
 public class ElementoCatalogoDAO {
 
@@ -35,4 +38,17 @@ public class ElementoCatalogoDAO {
 
         return query.getSingleResult();
     }
+
+    public List<ElementoCatalogo> findbyAnnoPubblicazione(int anno){
+        TypedQuery<ElementoCatalogo> query = em.createQuery(
+                "SELECT e FROM ElementoCatalogo e WHERE e.annoPubblicazione = :anno",
+                ElementoCatalogo.class
+        );
+
+        query.setParameter("anno", anno);
+
+        return query.getResultList();
+    }
+
+    
 }
