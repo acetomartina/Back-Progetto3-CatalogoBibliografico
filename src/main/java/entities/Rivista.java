@@ -32,11 +32,17 @@ public class Rivista extends ElementoCatalogo{
 
     @Override
     public String toString() {
-        return "Rivista{" +
-                "id=" + id +
-                ", codiceISBN='" + codiceISBN + '\'' +
-                ", titolo='" + titolo + '\'' +
-                ", periodicita=" + periodicita +
-                '}';
+        return """
+            ============================
+            RIVISTA
+            ISBN: %s
+            Titolo: %s
+            Periodicità: %s
+            ============================
+            """.formatted(
+                getCodiceISBN(),
+                getTitolo(),
+                periodicita
+        );
     }
 }

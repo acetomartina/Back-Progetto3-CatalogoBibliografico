@@ -82,5 +82,13 @@ public class ElementoCatalogoDAO {
         System.out.println("Elemento rimosso correttamente!");
     }
 
+    public List<ElementoCatalogo> findAll() {
+        TypedQuery<ElementoCatalogo> query = em.createQuery(
+                "SELECT e FROM ElementoCatalogo e",
+                ElementoCatalogo.class
+        );
+
+        return query.getResultList();
+    }
 
 }

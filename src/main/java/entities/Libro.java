@@ -37,15 +37,22 @@ public class Libro extends ElementoCatalogo{
 
     @Override
     public String toString() {
-        return "Libro{" +
-                "id=" + id +
-                ", codiceISBN='" + codiceISBN + '\'' +
-                ", titolo='" + titolo + '\'' +
-                ", annoPubblicazione=" + annoPubblicazione +
-                ", numeroPagine=" + numeroPagine +
-                ", autore='" + autore + '\'' +
-                ", genere='" + genere + '\'' +
-                '}';
+        return """
+            ============================
+            LIBRO
+            ISBN: %s
+            Titolo: %s
+            Anno: %d
+            Autore: %s
+            Genere: %s
+            ============================
+            """.formatted(
+                getCodiceISBN(),
+                getTitolo(),
+                getAnnoPubblicazione(),
+                autore,
+                genere
+        );
     }
 }
 

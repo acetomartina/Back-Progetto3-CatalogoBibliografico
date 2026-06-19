@@ -37,7 +37,7 @@ public abstract class ElementoCatalogo {
         return id;
     }
 
-    public String getIsbn() {
+    public String getCodiceISBN() {
         return codiceISBN;
     }
 
@@ -57,7 +57,7 @@ public abstract class ElementoCatalogo {
         this.id = id;
     }
 
-    public void setIsbn(String isbn) {
+    public void setCodiceISBN(String isbn) {
         this.codiceISBN = codiceISBN;
     }
 

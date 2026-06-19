@@ -63,4 +63,18 @@ public class PrestitoDAO {
 
         System.out.println("Prestito restituito correttamente!");
     }
+
+    public List<Prestito> findUltimiPrestitiByNumeroTessera(String numeroTessera) {
+
+        TypedQuery<Prestito> query = em.createQuery(
+                "SELECT p FROM Prestito p " +
+                        "WHERE p.utente.numeroTessera = :numeroTessera " +
+                        "ORDER BY p.dataInizioPrestito DESC",
+                Prestito.class
+        );
+
+        query.setParameter("numeroTessera", numeroTessera);
+
+        return query.getResultList();
+    }
 }
