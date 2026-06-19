@@ -1,59 +1,30 @@
 Il database è stato progettato utilizzando DrawSQL e segue una struttura relazionale basata sull'ereditarietà JPA tramite strategia JOINED.
 
 Tabelle principali
-- Utenti
-La tabella utenti contiene le informazioni degli utenti registrati nella biblioteca.
+- Utenti : 
+la tabella  contiene le informazioni degli utenti registrati nella biblioteca.
 
-Relazioni:
+Relazioni: 
 
-Un utente può avere più prestiti.
+un utente può avere più prestiti e può avere più elementi nella wishlist.
 
-Un utente può avere più elementi nella wishlist.
+- Elementi Catalogo: rappresenta la superclasse astratta del catalogo bibliografico.
 
-- Elementi Catalogo
-La tabella elementi_catalogo rappresenta la superclasse astratta del catalogo bibliografico.
+Relazioni: un elemento può essere presente in molti prestiti e può essere presente in molte wishlist.
 
-Relazioni:
-
-Un elemento può essere presente in molti prestiti.
-
-Un elemento può essere presente in molte wishlist.
-
-Libri
-La tabella libri estende elementi_catalogo.
-	
-id	PK/FK verso elementi_catalogo
-autore	Autore del libro
-genere	Genere letterario
-Relazione:
-
+- Libri: estende elementi_catalogo.
 Eredita tutti gli attributi di elementi_catalogo.
 
-Riviste
-La tabella riviste estende elementi_catalogo.
-
-periodicita	Settimanale, Mensile o Semestrale
-
-
+Riviste: estende elementi_catalogo.
 Eredita tutti gli attributi di elementi_catalogo.
 
-Prestiti
-La tabella prestiti gestisce i prestiti degli elementi del catalogo.
+Prestiti:gestisce i prestiti degli elementi del catalogo.
 
-Relazioni:
+Relazioni: molti prestiti possono appartenere allo stesso utente e possono riferirsi allo stesso elemento catalogo.
 
-Molti prestiti possono appartenere allo stesso utente.
+Lista Desideri: rappresenta la wishlist personale degli utenti.
 
-Molti prestiti possono riferirsi allo stesso elemento catalogo.
-
-Lista Desideri
-La tabella lista_desideri rappresenta la wishlist personale degli utenti.
-
-Relazioni:
-
-Un utente può salvare più elementi.
-
-Un elemento può essere presente nelle wishlist di più utenti.
+Relazioni: un utente può salvare più elementi e un elemento può essere presente nelle wishlist di più utenti.
 
 Relazioni implementate
 Utente ↔ Prestito
